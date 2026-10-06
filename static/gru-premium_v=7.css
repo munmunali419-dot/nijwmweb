@@ -112,7 +112,7 @@ body::before {
 }
 #gru-splash.hide { animation: gruSplashOut 0.55s ease forwards; }
 #gru-splash img {
-  width: 168px; height: 168px; border-radius: 50%; object-fit: cover;
+  width: 168px; height: 168px; border-radius: 50%; object-fit: contain;
   border: none;
   box-shadow: 0 0 32px rgba(34, 211, 238, 0.35);
   animation: gruGlowLogo 2s ease-in-out infinite;
@@ -149,7 +149,7 @@ a.gru-login-brand .gru-tg-link { pointer-events: auto; }
 }
 
 .gru-logo-lg {
-  width: 168px; height: 168px; border-radius: 50%; object-fit: cover;
+  width: 168px; height: 168px; border-radius: 50%; object-fit: contain;
   border: none;
   box-shadow: 0 0 28px rgba(34, 211, 238, 0.28);
   animation: gruGlowLogo 3s ease-in-out infinite;
@@ -157,7 +157,7 @@ a.gru-login-brand .gru-tg-link { pointer-events: auto; }
   background: #020617;
 }
 .gru-logo-sm {
-  width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+  width: 44px; height: 44px; border-radius: 50%; object-fit: contain;
   border: none;
   box-shadow: 0 0 10px rgba(34, 211, 238, 0.35);
   background: #020617;
@@ -471,4 +471,10 @@ header.sticky .ml-auto .flex.items-center.gap-3 > button {
   font-size: 13px !important;
   padding: 8px 14px !important;
   border-radius: 999px !important;
+}
+.gru-logo-lg {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
 }
