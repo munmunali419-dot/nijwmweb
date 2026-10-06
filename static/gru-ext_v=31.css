@@ -1,0 +1,790 @@
+/* Gru extension UI — light premium slate theme */
+
+.gru-like {
+  position: absolute; top: 10px; right: 10px; z-index: 5;
+  cursor: pointer; line-height: 1; padding: 0; font-size: 16px;
+}
+
+.gru-info-star {
+  background: none; border: none; cursor: pointer; line-height: 1;
+  font-size: 19px; padding: 2px 4px; color: #6b829e;
+  transition: color 0.15s, transform 0.15s; flex-shrink: 0;
+}
+.gru-info-star:hover { color: #ffc24b; transform: scale(1.12); }
+.gru-info-star.on { color: #ffc24b; text-shadow: 0 0 10px rgba(255, 194, 75, 0.5); }
+
+.gru-info-copy { cursor: pointer; transition: color 0.15s; }
+.gru-info-copy:hover { color: #22d3ee; }
+
+#gru-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: #2d3d56; border: 1px solid #22d3ee; color: #f2f6fc;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  z-index: 99999; opacity: 0; pointer-events: none; transition: all 0.25s;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.35);
+}
+#gru-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.gru-inp {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  background: #32425c; border: 1px solid #4a6280; color: #f2f6fc;
+  font-size: 14px; outline: none; box-sizing: border-box;
+}
+.gru-inp:focus {
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
+}
+.gru-inp::placeholder { color: #9fb3cb; }
+
+.gru-btn {
+  flex: 1; padding: 12px 20px; border-radius: 10px; border: none; cursor: pointer;
+  font-size: 14px; font-weight: 700;
+  background: linear-gradient(135deg, #22d3ee, #8b7cff);
+  color: #0f172a;
+  transition: filter 0.15s, transform 0.15s;
+}
+.gru-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.gru-btn.ghost {
+  background: #32425c; color: #f2f6fc;
+  border: 1px solid #4a6280; box-shadow: none;
+}
+.gru-btn.ghost:hover { border-color: #22d3ee; color: #22d3ee; filter: none; }
+
+.gru-tab-btn {
+  padding: 10px 14px !important;
+  border-bottom: 2px solid transparent !important;
+  font-size: 12px !important; font-weight: 700 !important;
+  color: #b4c4d8 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+.gru-tab-btn:hover { color: #f2f6fc !important; }
+.gru-tab-btn.active {
+  border-bottom-color: #22d3ee !important;
+  color: #22d3ee !important;
+}
+
+.gru-tab-btn.gru-tab-allsms { font-weight: 800 !important; }
+.gru-tab-btn.gru-tab-allsms.active {
+  color: #22d3ee !important;
+  text-shadow: 0 0 14px rgba(34, 211, 238, 0.35);
+}
+
+#gru-ext-panel.gru-allsms-panel {
+  background: linear-gradient(180deg, #243044, #2a3850) !important;
+}
+
+.gru-allsms-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-bottom: 14px; padding: 14px 16px; border-radius: 14px;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(139, 124, 255, 0.14));
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.2);
+}
+.gru-allsms-title {
+  font-size: 18px; font-weight: 800; margin: 0;
+  background: linear-gradient(135deg, #22d3ee, #8b7cff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gru-allsms-sub { font-size: 12px; color: #c5d4e8; margin: 4px 0 0; }
+.gru-allsms-badge {
+  min-width: 42px; padding: 6px 10px; border-radius: 999px; text-align: center;
+  font-size: 13px; font-weight: 800; color: #0f172a;
+  background: linear-gradient(135deg, #22d3ee, #8b7cff);
+}
+
+.gru-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: #6b829e; vertical-align: middle; margin-right: 6px;
+}
+.gru-dot.on { background: #34d399; box-shadow: 0 0 8px #34d399; }
+
+.gru-fw-lbl {
+  display: block; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: #b4c4d8; margin: 10px 0 6px;
+}
+.gru-fw-chips { display: flex; gap: 8px; }
+.gru-fw-chip {
+  flex: 1; padding: 10px 12px; border-radius: 10px; cursor: pointer;
+  background: #32425c; border: 1px solid #4a6280; color: #c5d4e8;
+  font-size: 13px; font-weight: 700; text-align: left;
+}
+.gru-fw-chip.on {
+  border-color: #22d3ee; color: #22d3ee;
+  background: rgba(34, 211, 238, 0.12);
+}
+.gru-fw-sim-k { display: block; font-size: 10px; letter-spacing: 0.6px; opacity: 0.8; }
+.gru-fw-sim-n { display: block; font-family: ui-monospace, monospace; font-size: 12px; margin-top: 2px; word-break: break-all; }
+.gru-fw-help { font-size: 11px; color: #b4c4d8; line-height: 1.5; margin: 0 0 4px; }
+.gru-fw-status { font-size: 12px; color: #f2f6fc; font-weight: 600; margin: 8px 0 0; }
+.gru-fw-last { font-size: 11px; color: #9fb3cb; margin: 4px 0 0; line-height: 1.45; }
+.gru-fw-err { font-size: 11px; color: #fca5a5; margin: 4px 0 0; }
+#gru-fw-detect { width: 100%; flex: none; margin-top: 4px; }
+
+#gru-info-sims { margin: 0; }
+.gru-info-sims-box {
+  margin: 12px 0 4px; padding: 12px;
+  background: linear-gradient(160deg, rgba(52, 211, 153, 0.10), rgba(34, 211, 238, 0.05));
+  border: 1px solid #1f2f3d; border-radius: 14px;
+}
+.gru-info-sims-title {
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+  color: #34d399; margin: 0 0 10px;
+}
+.gru-info-sim-card { margin-bottom: 8px; }
+.gru-info-sim-k { display: block; font-size: 10px; color: #b4c4d8; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.gru-info-sim-row { display: flex; gap: 6px; align-items: center; }
+.gru-info-sim-input { flex: 1; min-width: 0; }
+.gru-info-sim-detect { flex-shrink: 0; }
+.gru-info-sim-detectall { width: 100%; margin-top: 4px; }
+.gru-info-sim-save { width: 100%; margin-top: 8px; }
+.gru-info-sim-hint { font-size: 10px; color: #b4c4d8; margin: 8px 0 2px; line-height: 1.5; }
+.gru-info-sim-stat { font-size: 11px; color: #6ee7b7; margin-top: 4px; min-height: 14px; }
+
+.gru-send-simcard {
+  margin-top: 10px; padding: 10px 12px;
+  background: linear-gradient(160deg, rgba(34, 211, 238, 0.08), rgba(139, 92, 246, 0.05));
+  border: 1px solid #1f2f3d; border-radius: 12px;
+}
+.gru-send-simcard-title {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+  color: #22d3ee; margin: 0 0 6px;
+}
+.gru-send-simcard-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 4px 0; font-size: 12px;
+}
+.gru-send-simcard-row > span:first-child { color: #b4c4d8; }
+.gru-send-simcard-n { font-family: ui-monospace, monospace; font-weight: 600; color: #0ff; word-break: break-all; margin-left: 12px; }
+
+.gru-section-title {
+  font-size: 16px; font-weight: 700; color: #f2f6fc; margin: 10px 0 6px;
+}
+.gru-hint { font-size: 12px; color: #b4c4d8; margin-left: 6px; }
+.gru-empty { color: #b4c4d8; font-size: 14px; padding: 18px 0; text-align: center; }
+
+.gru-sms-item {
+  background: #32425c; border: 1px solid #4a6280;
+  border-radius: 12px; padding: 12px 14px; margin-top: 10px;
+  cursor: pointer; transition: border-color 0.15s, background 0.15s;
+}
+.gru-sms-item:active { transform: scale(0.995); }
+.gru-sms-item:hover {
+  border-color: #22d3ee;
+  background: #354866;
+}
+.gru-sms-item.gru-sms-out {
+  border-left: 3px solid #34d399;
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.12), rgba(52, 211, 153, 0.04));
+}
+.gru-sms-item.latest {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.16), rgba(34, 211, 238, 0.06));
+  border-color: rgba(34, 211, 238, 0.45);
+}
+
+.gru-sms-head {
+  display: flex; justify-content: space-between; font-size: 13px;
+  color: #b4c4d8; margin-bottom: 6px; gap: 10px;
+}
+.gru-sms-body {
+  font-size: 14px; color: #f2f6fc; line-height: 1.55; word-break: break-word;
+}
+
+.gru-del {
+  background: none; border: none; cursor: pointer; color: #b4c4d8;
+  font-size: 14px; padding: 2px 6px; border-radius: 6px; margin-left: 6px;
+}
+.gru-del:hover { color: #fb7185; background: rgba(251, 113, 133, 0.15); }
+
+.gru-otp {
+  display: inline-block; margin-top: 8px; padding: 4px 12px; border-radius: 6px;
+  background: #22d3ee; color: #0f172a; font-weight: 800; font-size: 12px;
+  cursor: pointer; border: none; font-family: ui-monospace, monospace;
+}
+
+.gru-otp-code {
+  display: block; margin-top: 8px; font-size: 22px; font-weight: 800;
+  letter-spacing: 4px; color: #22d3ee;
+  font-family: ui-monospace, monospace;
+  pointer-events: none;
+}
+
+/* Telegram Auto Token — inde.coder style inside Send tab */
+.gru-tg-card {
+  background: linear-gradient(135deg, rgba(42, 171, 238, 0.12), rgba(34, 211, 238, 0.05));
+  border: 1px solid rgba(42, 171, 238, 0.35); border-radius: 14px;
+  padding: 16px; margin-bottom: 18px; position: relative; overflow: hidden;
+}
+.gru-tg-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #2aabee, #22d3ee, #8b7cff);
+}
+.gru-tg-title { font-size: 15px; font-weight: 800; color: #f2f6fc; margin: 0 0 4px; }
+.gru-tg-sub { font-size: 11px; color: #b4c4d8; margin: 0 0 12px; line-height: 1.5; }
+.gru-tg-lbl {
+  display: block; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: #b4c4d8; margin: 8px 0 6px;
+}
+.gru-tg-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+.gru-tg-row .gru-inp { margin-bottom: 0; flex: 1; }
+.gru-tg-btn {
+  padding: 12px 16px; border: none; border-radius: 10px; font-size: 13px;
+  font-weight: 800; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+}
+.gru-tg-start {
+  background: linear-gradient(135deg, #2aabee, #22d3ee); color: #0f172a;
+  box-shadow: 0 4px 16px rgba(42, 171, 238, 0.3);
+}
+.gru-tg-stop {
+  background: rgba(251, 113, 133, 0.15); border: 1px solid rgba(251, 113, 133, 0.35);
+  color: #fca5a5;
+}
+.gru-tg-stat-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.gru-tg-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #6b829e; flex-shrink: 0;
+}
+.gru-tg-dot.live {
+  background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
+  animation: gruTgPulse 1.5s ease-in-out infinite;
+}
+.gru-tg-dot.err { background: #fb7185; }
+@keyframes gruTgPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+.gru-tg-stat-txt { font-size: 11px; font-weight: 600; color: #b4c4d8; }
+.gru-tg-last-box {
+  margin-top: 12px; background: rgba(26, 36, 54, 0.8); border: 1px solid rgba(42, 171, 238, 0.2);
+  border-radius: 10px; padding: 10px 12px;
+}
+.gru-tg-last-lbl {
+  font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: #9fb3cb; margin-bottom: 6px;
+}
+.gru-tg-last-txt {
+  font-family: ui-monospace, monospace; font-size: 11px; color: #22d3ee;
+  line-height: 1.5; white-space: pre-wrap; word-break: break-all; max-height: 72px; overflow-y: auto;
+}
+.gru-tg-fmt { font-size: 10px; color: #9fb3cb; margin-top: 10px; font-style: italic; line-height: 1.5; }
+
+/* SMS Forwarding (Auto) — green card below Telegram in Send tab */
+.gru-fw-auto {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.12), rgba(34, 197, 94, 0.05));
+  border: 1px solid rgba(52, 211, 153, 0.35); border-radius: 14px;
+  padding: 16px; margin-bottom: 18px; position: relative; overflow: hidden;
+}
+.gru-fw-auto::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #10b981, #34d399, #22d3ee);
+}
+.gru-fw-auto .gru-tg-last-txt { color: #34d399; }
+.gru-fw-sim-row { display: flex; gap: 8px; }
+.gru-fw-sim {
+  flex: 1; padding: 10px 12px; border-radius: 10px; cursor: pointer;
+  background: #1a2e27; border: 1px solid #2f4a40; color: #9fc0b5;
+  font-size: 13px; font-weight: 700;
+}
+.gru-fw-sim.on {
+  border-color: #34d399; color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+}
+
+/* --- Bulk Connect (login screen) --- */
+.gru-bulk-box {
+  margin-top: 18px; padding-top: 16px; border-top: 1px dashed rgba(74, 98, 128, 0.5);
+}
+.gru-bulk-head {
+  font-size: 14px; font-weight: 800; color: #fb923c; letter-spacing: 0.3px;
+}
+.gru-bulk-sub {
+  font-size: 11px; color: #9fb3cb; line-height: 1.5; margin: 6px 0 10px;
+}
+.gru-bulk-row-ctl {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 10px;
+}
+.gru-bulk-stat { font-size: 11px; color: #9fb3cb; }
+.gru-bulk-stat.ok { color: #34d399; font-weight: 700; }
+.gru-bulk-stat.err { color: #fb7185; font-weight: 700; }
+.gru-bulk-results {
+  margin-top: 10px; display: flex; flex-direction: column; gap: 5px; max-height: 220px; overflow-y: auto;
+}
+.gru-bulk-row {
+  display: flex; align-items: center; gap: 8px; font-size: 11px; flex-wrap: wrap;
+  padding: 6px 9px; border-radius: 8px; background: rgba(36, 48, 68, 0.5); border: 1px solid #1f2a3c;
+  border-left: 3px solid #4a6280;
+}
+.gru-bulk-row code { font-family: ui-monospace, monospace; color: #c5d4e8; word-break: break-all; flex: 1; min-width: 0; }
+.gru-bulk-row.ok { border-left-color: #34d399; }
+.gru-bulk-row.bad { border-left-color: #fb7185; }
+.gru-bulk-ico { font-weight: 900; }
+.gru-bulk-row.ok .gru-bulk-ico { color: #34d399; }
+.gru-bulk-row.bad .gru-bulk-ico { color: #fb7185; }
+.gru-bulk-tag { font-size: 9px; font-weight: 800; letter-spacing: 0.5px; padding: 2px 7px; border-radius: 999px; flex: 0 0 auto; }
+.gru-bulk-tag.ok { color: #0f172a; background: #34d399; }
+.gru-bulk-tag.bad { color: #0f172a; background: #fb7185; }
+.gru-bulk-err { font-size: 9.5px; color: #fb7185; flex-basis: 100%; }
+.gru-bulk-spin {
+  width: 13px; height: 13px; border-radius: 50%; border: 2px solid #4a6280; border-top-color: #22d3ee;
+  animation: gruSpin 0.9s linear infinite; flex: 0 0 auto;
+}
+@keyframes gruSpin { to { transform: rotate(360deg); } }
+
+/* Saved-accounts quick row on the login screen (Connect All Saved / Share Saved) */
+.gru-saved-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px;
+  padding-top: 10px; border-top: 1px dashed #2a3b54;
+}
+.gru-saved-row .gru-bulk-stat { flex-basis: 100%; }
+.gru-saved-row .gru-btn { flex: 1 1 auto; padding: 10px 14px; font-size: 13px; }
+.gru-saved-row .gru-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+html, body { overflow-x: hidden; }
+
+/* Mobile: stack header line-by-line (naruto-style), no clipped buttons */
+@media (max-width: 768px) {
+  header.sticky .max-w-screen-2xl {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    padding: 10px 12px !important;
+  }
+  header.sticky .relative.flex-1.max-w-sm {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    order: 20 !important;
+  }
+  header.sticky .ml-auto {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    order: 30 !important;
+  }
+  #gru-adv-bar {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    gap: 6px !important;
+    margin-top: 6px !important;
+  }
+  #gru-adv-bar .gru-adv-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 7px 6px !important;
+    font-size: 11px !important;
+    gap: 5px !important;
+    margin: 0 !important;
+  }
+}
+@media (max-width: 420px) {
+  #gru-adv-bar { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+  header.sticky .max-w-screen-2xl .flex.items-center.gap-2.5 > a .text-lg,
+  header.sticky .max-w-screen-2xl .text-lg.font-bold { font-size: 15px !important; }
+}
+
+/* Mobile: wrap drawer tabs so all tabs visible */
+@media (max-width: 480px) {
+  .relative.ml-auto.w-full.max-w-md.h-full .overflow-x-auto.flex {
+    flex-wrap: wrap !important;
+    overflow-x: visible !important;
+    justify-content: flex-start;
+  }
+  .relative.ml-auto.w-full.max-w-md.h-full .overflow-x-auto.flex .gru-tab-btn {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* Drawer header: Delete + Close buttons always visible (never pushed off phone screens) */
+.relative.ml-auto.w-full.max-w-md.h-full .px-5.py-4.border-b,
+.relative.ml-auto .device-detail-header {
+  flex-wrap: wrap !important;
+  gap: 8px;
+}
+.relative.ml-auto.w-full.max-w-md.h-full .px-5.py-4.border-b > .flex.items-center.gap-3,
+.relative.ml-auto .device-detail-header > .flex.items-center.gap-3 {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.relative.ml-auto.w-full.max-w-md.h-full .px-5.py-4.border-b > .flex.items-center.gap-2,
+.relative.ml-auto .device-detail-header > .flex.items-center.gap-2 {
+  flex: 0 0 auto;
+  gap: 6px !important;
+}
+
+/* Firebase source strip in the drawer STATUS row — own line, full width, no header push-out */
+.relative.ml-auto.w-full.max-w-md.h-full #gru-fb-bar {
+  flex-basis: 100%;
+  width: 100%;
+  margin-top: 2px;
+}
+
+/* Scissors "Cut" button (copies latest bank SMS from device's own firebase) */
+#gru-cut.gru-drawer-cut {
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(30, 30, 30, 0.9);
+  border: 1px solid #2a2a2a;
+  color: #888;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+#gru-cut.gru-drawer-cut:hover { color: #fff; border-color: #22d3ee; transform: scale(1.05); }
+#gru-cut.gru-drawer-cut.busy { opacity: .5; pointer-events: none; }
+
+/* --- Background UI Colors (premium panel background) --- */
+.gru-bg-box {
+  margin-top: 18px; padding-top: 16px; border-top: 1px dashed rgba(74, 98, 128, 0.5);
+}
+.gru-bg-toggle {
+  width: 100%; display: flex; align-items: center; gap: 8px; padding: 10px 12px;
+  background: rgba(36, 48, 68, 0.5); border: 1px solid #1f2a3c; border-radius: 10px;
+  color: #fb923c; font-size: 12.5px; font-weight: 800; cursor: pointer; text-align: left;
+  transition: background .15s ease, border-color .15s ease;
+}
+.gru-bg-toggle:hover { border-color: #3a5370; background: rgba(45, 60, 85, 0.6); }
+.gru-bg-toggle .gru-bg-arrow { margin-left: auto; font-size: 12px; color: #9fb3cb; }
+.gru-bg-body { display: none; margin-top: 12px; }
+.gru-bg-box.open .gru-bg-body { display: block; }
+.gru-bg-swatches {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 10px;
+}
+.gru-bg-swatch {
+  position: relative; height: 58px; border-radius: 10px; cursor: pointer;
+  border: 2px solid rgba(120, 140, 170, 0.35); background-size: cover; background-position: center;
+  overflow: hidden; padding: 0; transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.gru-bg-swatch:hover { transform: translateY(-2px); border-color: #93c5fd; }
+.gru-bg-swatch.on { border-color: #fb923c; box-shadow: 0 0 0 2px rgba(251, 146, 60, 0.45); }
+.gru-bg-swatch span {
+  position: absolute; left: 6px; bottom: 5px; font-size: 9px; font-weight: 800; color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9); letter-spacing: 0.3px;
+}
+.gru-bg-row { display: flex; gap: 14px; align-items: stretch; margin-top: 12px; flex-wrap: wrap; }
+.gru-bg-line {
+  position: relative; width: 44px; height: 150px; border-radius: 999px; cursor: ns-resize; flex: 0 0 auto;
+  background: linear-gradient(to bottom, #f43f5e, #f97316, #eab308, #22c55e, #06b6d4, #3b82f6, #8b5cf6);
+  touch-action: none; user-select: none;
+}
+.gru-bg-thumb {
+  position: absolute; left: 50%; top: 4px; width: 26px; height: 26px; border-radius: 50%;
+  transform: translate(-50%, -50%); background: #fff; border: 3px solid #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); pointer-events: none;
+}
+.gru-bg-ctl { display: flex; flex-direction: column; gap: 8px; flex: 1 1 180px; min-width: 160px; }
+.gru-bg-preview {
+  margin-top: 4px; height: 44px; border-radius: 10px; border: 1px solid rgba(120, 140, 170, 0.35);
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800;
+  color: #e6edf7; letter-spacing: 0.4px; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+  background-position: center; background-size: cover;
+}
+@media (max-width: 640px) {
+  .gru-bg-swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gru-bg-line { height: 120px; }
+}
+
+/* Light / White Premium background — page text flips dark where it sits on the backdrop */
+.gru-bg-light,
+.gru-bg-light .min-h-screen {
+  color: #131a24 !important;
+}
+.gru-bg-light .min-h-screen .text-white:not(header) {
+  color: #131a24 !important;
+}
+
+/* Device card color themes — recolor ALL device cards via CSS vars (set on <html>) */
+.group.relative.bg-\[\#111111\] {
+  background: var(--gru-card-bg, #111111) !important;
+  border-color: var(--gru-card-bd, #1f1f1f) !important;
+}
+.group.relative.bg-\[\#111111\]:hover {
+  background: var(--gru-card-bg-h, #161616) !important;
+  border-color: var(--gru-card-bd-h, #2a2a2a) !important;
+}
+.w-10.h-10.rounded-xl.bg-\[\#1a1a1a\] {
+  background: var(--gru-card-icon, #1a1a1a) !important;
+  border-color: var(--gru-card-iconbd, #262626) !important;
+}
+
+/* Light card themes — flip card text to dark so it stays readable on light colors */
+.gru-card-light .group.relative h3.text-white { color: #1c2532 !important; }
+.gru-card-light .group.relative .text-\[\#444\] { color: #5b6575 !important; }
+.gru-card-light .group.relative .text-\[\#555\] { color: #4a5463 !important; }
+.gru-card-light .group.relative .text-\[\#666\] { color: #5b6575 !important; }
+.gru-card-light .group.relative .text-\[\#aaa\] { color: #37404f !important; }
+.gru-card-light .group.relative .text-\[\#ccc\] { color: #2c3544 !important; }
+
+/* Card color modal — keep it scrollable with lots of swatches */
+#gru-adv-modal.wide .gru-adv-body { max-height: 66vh; overflow-y: auto; }
+
+/* ===== Device detail drawer (click a device) follows the card theme ===== */
+.relative.ml-auto.w-full.max-w-md,
+.relative.ml-auto.w-full.max-w-md.flex.flex-col {
+  background: var(--gru-card-bg, #0d0d0d) !important;
+  border-left-color: var(--gru-card-bd, #1f1f1f) !important;
+}
+.relative.ml-auto .bg-\[\#0a0a0a\] {
+  background: var(--gru-card-inner, rgba(0,0,0,0.30)) !important;
+}
+.relative.ml-auto .bg-\[\#111\],
+.relative.ml-auto .bg-\[\#111111\],
+.relative.ml-auto .bg-\[\#100d18\],
+.relative.ml-auto .bg-\[\#0a130d\],
+.relative.ml-auto .bg-\[\#081410\],
+.relative.ml-auto .bg-\[\#0f0a1a\] {
+  background: var(--gru-card-inner, rgba(0,0,0,0.30)) !important;
+}
+.relative.ml-auto .border-\[\#1a1a1a\],
+.relative.ml-auto .border-\[\#1f1f1f\],
+.relative.ml-auto .border-\[\#262626\],
+.relative.ml-auto .border-\[\#2a2a2a\] {
+  border-color: var(--gru-card-bd, #1a1a1a) !important;
+}
+/* light card theme inside drawer — flip text to dark */
+.gru-card-light .relative.ml-auto .text-white { color: #1c2532 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#333\] { color: #40506b !important; }
+.gru-card-light .relative.ml-auto .text-\[\#444\] { color: #4a5568 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#555\] { color: #44505f !important; }
+.gru-card-light .relative.ml-auto .text-\[\#666\] { color: #44505f !important; }
+.gru-card-light .relative.ml-auto .text-\[\#777\] { color: #3d4957 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#888\] { color: #37434f !important; }
+.gru-card-light .relative.ml-auto .text-\[\#999\] { color: #2f3a46 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#aaa\] { color: #2a3440 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#bbb\] { color: #242d38 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#ccc\] { color: #1f2731 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#ddd\] { color: #1a212a !important; }
+
+/* ===== All SMS panel follows the card theme ===== */
+#gru-ext-panel.gru-allsms-panel {
+  background: var(--gru-card-bg, linear-gradient(180deg, #243044, #2a3850)) !important;
+}
+.relative.ml-auto .gru-inp {
+  background: var(--gru-card-inner, #32425c);
+  border-color: var(--gru-card-bd, #4a6280);
+}
+.gru-card-light .relative.ml-auto .gru-inp { color: #1c2532; }
+.gru-card-light .relative.ml-auto .gru-inp::placeholder { color: #5b6575; }
+.gru-card-light #gru-ext-panel .gru-allsms-sub,
+.gru-card-light #gru-ext-panel .gru-empty { color: #44505f; }
+.gru-card-light #gru-ext-panel .gru-section-title { color: #1c2532; }
+.gru-card-light #gru-ext-panel .gru-allsms-title,
+.gru-card-light #gru-ext-panel .gru-allsms-head { color: #1c2532; }
+.gru-card-light #gru-ext-panel .gru-sms-item,
+.gru-card-light #gru-ext-panel .gru-sms-item.latest,
+.gru-card-light #gru-ext-panel .gru-sms-item.gru-sms-out {
+  background: rgba(0,0,0,0.07);
+  border-color: rgba(0,0,0,0.18);
+}
+.gru-card-light #gru-ext-panel .gru-sms-item:hover { background: rgba(0,0,0,0.12); }
+.gru-card-light #gru-ext-panel .gru-sms-head { color: #3d4957; }
+.gru-card-light #gru-ext-panel .gru-sms-body { color: #1c2532; }
+.gru-card-light #gru-ext-panel .gru-del { color: #5b6575; }
+
+/* Bank/Card tab blocks inside drawer follow card theme */
+.gru-card-light .relative.ml-auto .bg-\[\#081410\] { background: rgba(0,0,0,0.06) !important; }
+.gru-card-light .relative.ml-auto .bg-\[\#0a1410\] { background: rgba(0,0,0,0.06) !important; }
+.gru-card-light .relative.ml-auto .border-emerald-900\/40 { border-color: rgba(0,0,0,0.22) !important; }
+.gru-card-light .relative.ml-auto .border-emerald-900\/30 { border-color: rgba(0,0,0,0.18) !important; }
+.gru-card-light .relative.ml-auto .text-white { color: #1c2532 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#333\] { color: #4a5568 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#444\] { color: #4a5568 !important; }
+.gru-card-light .relative.ml-auto .text-\[\#555\] { color: #44505f !important; }
+.gru-card-light .relative.ml-auto .bg-\[\#111\] { background: rgba(255,255,255,0.5) !important; }
+
+/* ==========================================================================
+   THEME ACCENT — buttons, inputs, chips, tabs, SMS rows all follow card color
+   ========================================================================== */
+.gru-btn {
+  background: linear-gradient(135deg, var(--gru-accent, #22d3ee), var(--gru-accent2, #8b7cff)) !important;
+  color: var(--gru-on-accent, #0f172a) !important;
+}
+.gru-btn.ghost {
+  background: var(--gru-chip-bg, #32425c) !important;
+  color: var(--gru-fg, #f2f6fc) !important;
+  border-color: var(--gru-inp-bd, #4a6280) !important;
+}
+.gru-btn.ghost:hover {
+  border-color: var(--gru-accent, #22d3ee) !important;
+  color: var(--gru-accent, #22d3ee) !important;
+}
+.gru-inp {
+  background: var(--gru-inp-bg, #32425c) !important;
+  border-color: var(--gru-inp-bd, #4a6280) !important;
+  color: var(--gru-fg, #f2f6fc) !important;
+}
+.gru-inp:focus {
+  border-color: var(--gru-accent, #22d3ee) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gru-accent, #22d3ee) 25%, transparent) !important;
+}
+.gru-inp::placeholder { color: var(--gru-fg2, #9fb3cb) !important; }
+.gru-tab-btn { color: var(--gru-fg2, #b4c4d8) !important; }
+.gru-tab-btn:hover { color: var(--gru-fg, #f2f6fc) !important; }
+.gru-tab-btn.active {
+  border-bottom-color: var(--gru-accent, #22d3ee) !important;
+  color: var(--gru-accent, #22d3ee) !important;
+}
+.gru-tab-btn.gru-tab-allsms.active {
+  color: var(--gru-accent, #22d3ee) !important;
+  text-shadow: 0 0 14px color-mix(in srgb, var(--gru-accent, #22d3ee) 40%, transparent);
+}
+/* Forwarding type + SIM chips: selected state must be obvious */
+.gru-fw-chip {
+  background: var(--gru-surface, #32425c) !important;
+  border-color: var(--gru-border, #4a6280) !important;
+  color: var(--gru-fg, #f2f6fc) !important;
+}
+.gru-fw-chip .gru-fw-sim-k,
+.gru-fw-chip .gru-fw-sim-n { color: inherit !important; }
+.gru-fw-chip:hover { border-color: var(--gru-accent, #22d3ee) !important; }
+.gru-fw-chip.on {
+  background: var(--gru-accent, #22d3ee) !important;
+  border-color: var(--gru-accent, #22d3ee) !important;
+  color: var(--gru-on-accent, #0f172a) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gru-accent, #22d3ee) 32%, transparent) !important;
+}
+.gru-fw-chip.on::after { content: ' \2713'; font-weight: 900; }
+.gru-fw-sim {
+  background: var(--gru-surface, #1a2e27) !important;
+  border-color: var(--gru-border, #2f4a40) !important;
+  color: var(--gru-fg, #f2f6fc) !important;
+  font-size: 14px !important;
+  padding: 12px !important;
+}
+.gru-fw-sim:hover { border-color: var(--gru-accent, #22d3ee) !important; }
+.gru-fw-sim.on {
+  background: var(--gru-accent, #22d3ee) !important;
+  border-color: var(--gru-accent, #22d3ee) !important;
+  color: var(--gru-on-accent, #0f172a) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gru-accent, #22d3ee) 32%, transparent) !important;
+}
+.gru-fw-sim.on::after { content: ' \2713'; font-weight: 900; }
+.gru-fw-lbl, .gru-fw-help, .gru-fw-last,
+.gru-bulk-sub, .gru-bulk-stat, .gru-hint, .gru-empty,
+.gru-allsms-sub, .gru-sms-head, .gru-del,
+.gru-tg-lbl, .gru-tg-stat-txt, .gru-tg-last-lbl, .gru-tg-fmt,
+.gru-info-sim-k, .gru-info-sim-hint, .gru-send-simcard-row > span:first-child {
+  color: var(--gru-fg2, #b4c4d8) !important;
+}
+.gru-fw-status { color: var(--gru-fg, #f2f6fc) !important; }
+.gru-section-title { color: var(--gru-fg, #f2f6fc) !important; }
+.gru-sms-body { color: var(--gru-fg, #f2f6fc) !important; }
+.gru-sms-item {
+  background: var(--gru-chip-bg, #32425c) !important;
+  border-color: var(--gru-inp-bd, #4a6280) !important;
+}
+.gru-sms-item:hover {
+  background: color-mix(in srgb, var(--gru-accent, #22d3ee) 16%, transparent) !important;
+  border-color: var(--gru-accent, #22d3ee) !important;
+}
+.gru-sms-item.latest {
+  background: color-mix(in srgb, var(--gru-accent, #22d3ee) 18%, transparent) !important;
+  border-color: color-mix(in srgb, var(--gru-accent, #22d3ee) 50%, transparent) !important;
+}
+.gru-otp {
+  background: var(--gru-accent, #22d3ee) !important;
+  color: var(--gru-on-accent, #0f172a) !important;
+}
+.gru-otp-code { color: var(--gru-accent, #22d3ee) !important; }
+.gru-allsms-head {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--gru-accent, #22d3ee) 20%, transparent),
+    color-mix(in srgb, var(--gru-accent2, #8b7cff) 15%, transparent)) !important;
+  border-color: color-mix(in srgb, var(--gru-accent, #22d3ee) 45%, transparent) !important;
+}
+.gru-allsms-title {
+  background-image: linear-gradient(135deg, var(--gru-accent, #22d3ee), var(--gru-accent2, #8b7cff)) !important;
+}
+.gru-allsms-badge {
+  background: linear-gradient(135deg, var(--gru-accent, #22d3ee), var(--gru-accent2, #8b7cff)) !important;
+  color: var(--gru-on-accent, #0f172a) !important;
+}
+.gru-send-simcard {
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--gru-accent, #22d3ee) 12%, transparent),
+    color-mix(in srgb, var(--gru-accent2, #8b7cff) 8%, transparent)) !important;
+  border-color: var(--gru-inp-bd, #1f2f3d) !important;
+}
+.gru-send-simcard-title { color: var(--gru-accent, #22d3ee) !important; }
+.gru-info-sims-box { border-color: var(--gru-inp-bd, #1f2f3d) !important; }
+.gru-bulk-row {
+  background: var(--gru-chip-bg, rgba(36, 48, 68, 0.5)) !important;
+  border-color: var(--gru-inp-bd, #1f2a3c) !important;
+}
+.gru-bulk-row code { color: var(--gru-fg2, #c5d4e8) !important; }
+.gru-bulk-spin { border-color: var(--gru-inp-bd, #4a6280) !important; border-top-color: var(--gru-accent, #22d3ee) !important; }
+.relative.ml-auto .gru-inp {
+  background: var(--gru-inp-bg, #32425c) !important;
+  border-color: var(--gru-inp-bd, #4a6280) !important;
+}
+
+/* light card theme — branded gradient cards that stay readable */
+.gru-card-light .gru-tg-card,
+.gru-card-light .gru-fw-auto {
+  background: rgba(0,0,0,0.05) !important;
+  border-color: rgba(0,0,0,0.18) !important;
+}
+.gru-card-light .gru-tg-title,
+.gru-card-light .gru-tg-last-txt { color: #1c2532 !important; }
+.gru-card-light .gru-fw-auto .gru-tg-last-txt { color: #047857 !important; }
+/* ---- Telegram + SMS Forwarding on/off buttons & boxes follow theme ---- */
+.gru-tg-start,
+#gru-fw-start,
+#gru-global-fwd-btn {
+  background: linear-gradient(135deg, var(--gru-accent, #22d3ee), var(--gru-accent2, #8b7cff)) !important;
+  color: var(--gru-on-accent, #0f172a) !important;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--gru-accent, #22d3ee) 32%, transparent) !important;
+}
+.gru-tg-stop,
+#gru-fw-stop {
+  background: var(--gru-chip-bg, rgba(251, 113, 133, 0.15)) !important;
+  border: 1px solid var(--gru-inp-bd, #4a6280) !important;
+  color: var(--gru-fg2, #b4c4d8) !important;
+  box-shadow: none !important;
+}
+.gru-fw-box {
+  background: var(--gru-card, #1e293b) !important;
+  border: 1px solid var(--gru-border, #334155) !important;
+}
+.gru-fw-brand {
+  background: linear-gradient(135deg, var(--gru-accent, #FFD580), var(--gru-accent2, #FFA500)) !important;
+}
+.gru-tg-last-box {
+  background: var(--gru-card, rgba(26, 36, 54, 0.8)) !important;
+  border-color: var(--gru-border, rgba(42, 171, 238, 0.2)) !important;
+}
+.gru-fw-glbl { color: var(--gru-accent, #f43f5e) !important; }
+
+/* ===== Bank / Card tabs — full theme coverage (dark + light) ===== */
+.relative.ml-auto .bg-\[\#0a1410\],
+.relative.ml-auto .bg-\[\#081410\] {
+  background: color-mix(in srgb, var(--gru-accent, #22d3ee) 11%, transparent) !important;
+  border-color: color-mix(in srgb, var(--gru-accent, #22d3ee) 32%, transparent) !important;
+}
+.relative.ml-auto .bg-\[\#0a1410\] {
+  border-left-color: color-mix(in srgb, var(--gru-accent, #22d3ee) 70%, transparent) !important;
+}
+.relative.ml-auto .border-\[\#151f15\] { border-color: var(--gru-card-bd, #151f15) !important; }
+.relative.ml-auto .border-\[\#333\] { border-color: var(--gru-card-bd, #333333) !important; }
+.relative.ml-auto .text-\[\#2a2a2a\] { color: var(--gru-fg2, #5b6575) !important; opacity: 0.6; }
+.relative.ml-auto .text-\[\#777\] { color: var(--gru-fg2, #b4c4d8) !important; }
+.relative.ml-auto .hover\:bg-white\/5:hover { background: rgba(255,255,255,0.06) !important; }
+
+/* light card theme — darken the status/brand colors so they stay readable */
+.gru-card-light .relative.ml-auto .text-emerald-400 { color: #047857 !important; }
+.gru-card-light .relative.ml-auto .text-emerald-500 { color: #059669 !important; }
+.gru-card-light .relative.ml-auto .text-emerald-600\/70 { color: #047857 !important; }
+.gru-card-light .relative.ml-auto .text-emerald-700 { color: #065f46 !important; }
+.gru-card-light .relative.ml-auto .bg-emerald-500\/15 { background: rgba(5,150,105,0.14) !important; }
+.gru-card-light .relative.ml-auto .bg-emerald-500\/10 { background: rgba(5,150,105,0.12) !important; }
+.gru-card-light .relative.ml-auto .border-emerald-500\/25 { border-color: rgba(5,150,105,0.32) !important; }
+.gru-card-light .relative.ml-auto .border-emerald-500\/20 { border-color: rgba(5,150,105,0.28) !important; }
+.gru-card-light .relative.ml-auto .text-purple-400 { color: #6d28d9 !important; }
+.gru-card-light .relative.ml-auto .bg-purple-500\/10 { background: rgba(124,58,237,0.10) !important; }
+.gru-card-light .relative.ml-auto .border-purple-500\/20 { border-color: rgba(124,58,237,0.30) !important; }
+.gru-card-light .relative.ml-auto .text-red-400 { color: #b91c1c !important; }
+.gru-card-light .relative.ml-auto .text-red-700 { color: #991b1b !important; }
+.gru-card-light .relative.ml-auto .border-red-900\/30 { border-color: rgba(220,38,38,0.32) !important; }
+.gru-card-light .relative.ml-auto .text-amber-400 { color: #b45309 !important; }
+.gru-card-light .relative.ml-auto .text-blue-400 { color: #1d4ed8 !important; }
+.gru-card-light .relative.ml-auto .hover\:bg-white\/5:hover { background: rgba(0,0,0,0.06) !important; }
